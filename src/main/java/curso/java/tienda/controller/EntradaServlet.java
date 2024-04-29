@@ -6,6 +6,8 @@ import curso.java.tienda.service.OperacionesProducto;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +44,14 @@ public class EntradaServlet extends HttpServlet {
 		
 		request.setAttribute("catalogo", ProductoDAO.findAll());
 		
+		if (request.getParameter("idioma") == null) {
+			// Idioma 'es' por defecto
+			Locale locale = new Locale("es");
+	    	
+	    	ResourceBundle messages = ResourceBundle.getBundle("language/messages", locale);
+
+	        request.setAttribute("messages", messages);
+		}
 		
 		request.getRequestDispatcher("view/index.jsp").forward(request, response);
 	}
@@ -50,6 +60,15 @@ public class EntradaServlet extends HttpServlet {
 		if (request.getParameter("orden") != null) {
 			request.setAttribute("catalogo", OperacionesProducto.buscarPorFiltro(request.getParameter("orden")));
 		    
+			if (request.getParameter("idioma") == null) {
+				// Idioma 'es' por defecto
+				Locale locale = new Locale("es");
+		    	
+		    	ResourceBundle messages = ResourceBundle.getBundle("language/messages", locale);
+
+		        request.setAttribute("messages", messages);
+			}
+	        
 		    request.getRequestDispatcher("view/index.jsp").forward(request, response);
 		}
 	}

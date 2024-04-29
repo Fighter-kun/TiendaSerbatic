@@ -1,6 +1,8 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="curso.java.tienda.model.VO.ProductoVO"%>
 <%@page import="curso.java.tienda.model.VO.UsuarioVO"%>
+<%@ page import="java.util.ResourceBundle" %>
+<%ResourceBundle i18n = (ResourceBundle) request.getAttribute("messages") ;%>
 <header id="header">
                 <div class="header-top">
                     <div class="container">
@@ -12,11 +14,10 @@
                             </div>
                             <div class="col-xs-12 col-sm-8">
                                 <ul class="header-top-right text-right">
-                                    <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Language <span class="caret"></span> </span>
+                                    <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><%= i18n.getString("language") %> <span class="caret"></span> </span>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#">English</a></li>
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">German</a></li>
+                                        	<li><a href="SeleccionIdioma?idioma=es">Castellano</a></li>
+        									<li><a href="SeleccionIdioma?idioma=en">English</a></li>
                                         </ul>
                                     </li>
                                     <li class="currency dropdown"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
@@ -38,7 +39,7 @@
                                     <span aria-haspopup="true" aria-expanded="false" role="button"><a href="LogoutServlet">Logout</a> </span> 
                                     <%
                                     } else { %> 
-                                    <li class="account"><a href="LoginServlet">My Account</a></li>
+                                    <li class="account"><a href="LoginServlet"><%= i18n.getString("account") %></a></li>
                                         <% } %>
                                 </ul>
                             </div>
@@ -48,14 +49,12 @@
                 <div class="header">
                     <div class="container">
                         <div class="row">
+                        <div class="navbar-header col-xs-6 col-sm-4"> <a class="navbar-brand" href="AÃ±adirProductoServlet"> <img alt="themini" src="webroot/images/logo.png"> </a> </div>
                             <div class="col-xs-12 col-sm-4">
                                 <div class="main-search mt_40">
-                                    <input id="search-input" name="search" value="" placeholder="Search" class="form-control input-lg" autocomplete="off" type="text">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
-                                    </span> </div>
+                                    </div>
                             </div>
-                            <div class="navbar-header col-xs-6 col-sm-4"> <a class="navbar-brand" href="AñadirProductoServlet"> <img alt="themini" src="webroot/images/logo.png"> </a> </div>
+                            
                             <div class="col-xs-6 col-sm-4 shopcart">
                                 <div id="cart" class="btn-group btn-block mtb_40">
                                     <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true"><span id="shippingcart">Shopping cart</span><span id="cart-total">

@@ -35,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 				HttpSession sessionLogin = request.getSession(true);
 				sessionLogin.setAttribute("usuario", user);
 
-				//PropertyConfigurator.configure("./log4j.properties");
 				log.info("El usuario "+ user.getEmail()+" inició sesión.");
 				request.getRequestDispatcher("").forward(request, response);
 
