@@ -85,7 +85,7 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 col-sm-offset-3">
                                                                 <%
-                                                                    String errorMessage = (String) session.getAttribute("error");
+                                                                    String errorMessage = (String) request.getAttribute("error");
                                                                     if (errorMessage != null) {
                                                                 %>
                                                                 <p style="color: red;"><%=errorMessage%></p>

@@ -39,10 +39,6 @@ VALUES (1, 1, 10.99, 2, 0.21, 21.98);
 INSERT INTO opciones_menu (id_rol, nombre_opcion, url_opcion) 
 VALUES (1, 'Inicio', '/inicio');
 
--- INSERT para la tabla configuracion
-INSERT INTO configuracion (clave, valor, tipo) 
-VALUES ('limite_stock', '10', 'int');
-
 -- INSERT para la tabla valoraciones
 INSERT INTO valoraciones (id_producto, id_usuario, valoracion, comentario) 
 VALUES (1, 1, 5, 'Excelente producto, muy recomendable.');

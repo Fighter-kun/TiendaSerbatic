@@ -28,24 +28,15 @@ public class SeleccionIdioma extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idioma = request.getParameter("idioma");
 
-        if (idioma != null) {
-        	Locale locale = new Locale(idioma);
-        	
-        	ResourceBundle messages = ResourceBundle.getBundle("language/messages", locale);
-
-            request.setAttribute("messages", messages);
-
-            request.getRequestDispatcher("").forward(request, response);
-        } else {
-        	Locale locale = new Locale("es");
-        	
-        	ResourceBundle messages = ResourceBundle.getBundle("language/messages", locale);
-
-            request.setAttribute("messages", messages);
-
-            request.getRequestDispatcher("").forward(request, response);
-        }
+        if ("es".equals(idioma)) {
+			request.getSession().setAttribute("locale", new Locale("es"));
+		} else if ("en".equals(idioma)) {
+			request.getSession().setAttribute("locale", new Locale("en"));
+		} else {
+			request.getSession().setAttribute("locale", request.getLocale());
+		}        
         
+        request.getRequestDispatcher("").forward(request, response);
     }
 
 }

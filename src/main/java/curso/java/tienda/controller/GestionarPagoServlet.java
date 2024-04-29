@@ -119,7 +119,7 @@ public class GestionarPagoServlet extends HttpServlet {
 			}
 			
 			session.setAttribute("carrito", null);
-			request.getRequestDispatcher("").forward(request, response);
+			response.sendRedirect(request.getContextPath());
 		} else {
 			// REDIRIGIR E INDICAR QUE EL CARRITO ESTA VACIO
 			request.getRequestDispatcher("view/carrito.jsp").forward(request, response);

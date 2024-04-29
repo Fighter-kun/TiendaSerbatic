@@ -1,4 +1,4 @@
-package curso.java.tienda.controller.login;
+package curso.java.tienda.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

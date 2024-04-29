@@ -1,4 +1,4 @@
-package curso.java.tienda.controller.login;
+package curso.java.tienda.controller;
 
 import java.io.*;
 
@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import curso.java.tienda.model.DAO.UsuarioDAO;
 import curso.java.tienda.model.VO.UsuarioVO;
@@ -36,12 +35,10 @@ public class LoginServlet extends HttpServlet {
 				sessionLogin.setAttribute("usuario", user);
 
 				log.info("El usuario "+ user.getEmail()+" inició sesión.");
-				request.getRequestDispatcher("").forward(request, response);
-
-				
+				response.sendRedirect(request.getContextPath());
+							
 			} else {
-				HttpSession sessionLogin = request.getSession(false);
-				sessionLogin.setAttribute("error", "Error de credenciales.");
+				request.setAttribute("error", "Error de credenciales.");
                 request.getRequestDispatcher("view/login.jsp").forward(request, response);
 			}
 		

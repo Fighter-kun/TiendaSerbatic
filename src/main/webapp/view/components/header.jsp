@@ -1,8 +1,11 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="curso.java.tienda.model.VO.ProductoVO"%>
 <%@page import="curso.java.tienda.model.VO.UsuarioVO"%>
-<%@ page import="java.util.ResourceBundle" %>
-<%ResourceBundle i18n = (ResourceBundle) request.getAttribute("messages") ;%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:setLocale value="${locale}" scope="session" />
+<fmt:setBundle basename="messages" scope="session" />
 <header id="header">
                 <div class="header-top">
                     <div class="container">
@@ -14,17 +17,10 @@
                             </div>
                             <div class="col-xs-12 col-sm-8">
                                 <ul class="header-top-right text-right">
-                                    <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><%= i18n.getString("language") %> <span class="caret"></span> </span>
+                                    <li class="language dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><fmt:message key="language" /> <span class="caret"></span> </span>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                         	<li><a href="SeleccionIdioma?idioma=es">Castellano</a></li>
         									<li><a href="SeleccionIdioma?idioma=en">English</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="currency dropdown"> <span class="dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">Currency <span class="caret"></span> </span>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu12">
-                                            <li><a href="#">€ Euro</a></li>
-                                            <li><a href="#">£ Pound Sterling</a></li>
-                                            <li><a href="#">$ US Dollar</a></li>
                                         </ul>
                                     </li>
                                     <%
@@ -39,7 +35,7 @@
                                     <span aria-haspopup="true" aria-expanded="false" role="button"><a href="LogoutServlet">Logout</a> </span> 
                                     <%
                                     } else { %> 
-                                    <li class="account"><a href="LoginServlet"><%= i18n.getString("account") %></a></li>
+                                    <li class="account"><a href="LoginServlet">Account</a></li>
                                         <% } %>
                                 </ul>
                             </div>
