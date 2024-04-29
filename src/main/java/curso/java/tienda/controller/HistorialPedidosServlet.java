@@ -3,6 +3,7 @@ package curso.java.tienda.controller;
 import curso.java.tienda.model.VO.DetallePedidoVO;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import curso.java.tienda.model.VO.PedidoVO;
 import curso.java.tienda.model.VO.UsuarioVO;
+import curso.java.tienda.service.OperacionesProducto;
 import curso.java.tienda.service.OperacionesUsuario;
 import java.io.PrintWriter;
 
@@ -39,7 +41,7 @@ public class HistorialPedidosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         UsuarioVO user = (UsuarioVO) session.getAttribute("usuario");
-        List<PedidoVO> listadoPedidos = OperacionesUsuario.listarPedidosUsuario(user.getId());
+        List<PedidoVO> listadoPedidos = OperacionesUsuario.listarPedidosUsuario(user.getId(),"descendente");
 
         if (listadoPedidos != null && request.getParameter("idPedido") == null) {
             request.setAttribute("listadoPedidos", listadoPedidos);
@@ -95,8 +97,17 @@ public class HistorialPedidosServlet extends HttpServlet {
      * response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
+    	if (request.getParameter("orden") != null) {
+    		HttpSession session = request.getSession(false);
+            UsuarioVO user = (UsuarioVO) session.getAttribute("usuario");
+            List<PedidoVO> listadoPedidos = OperacionesUsuario.listarPedidosUsuario(user.getId(),request.getParameter("orden"));
+
+            if (listadoPedidos != null && request.getParameter("idPedido") == null) {
+                request.setAttribute("listadoPedidos", listadoPedidos);
+                request.getRequestDispatcher("view/historialPedidos.jsp").forward(request, response);
+            }         
+            
+		}
     }
 
 }

@@ -94,7 +94,7 @@ public class PedidoDAO {
 }
 
     
-    public static List<PedidoVO> listarPedidosUsuario(int id_usuario) {
+    public static List<PedidoVO> listarPedidosUsuario(int id_usuario, String orden) {
         List<PedidoVO> pedidos = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -103,6 +103,16 @@ public class PedidoDAO {
         try {
             conn = Conexion.getConexion();
             String sql = "SELECT * FROM pedidos WHERE id_usuario = ?";
+            
+            switch (orden) {
+                case "ascendente":
+                    sql += " ORDER BY fecha ASC";
+                    break;
+                case "descendente":
+                    sql += " ORDER BY fecha DESC";
+                    break;
+            }
+            
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id_usuario);
             rs = stmt.executeQuery();
@@ -115,7 +125,6 @@ public class PedidoDAO {
                 String numFactura = rs.getString("num_Factura");
                 double total = rs.getDouble("total");
 
-                
                 PedidoVO pedido = new PedidoVO(id, id_usuario, fecha, metodoPago, estado, numFactura, total);
                 pedidos.add(pedido);
             }
@@ -125,5 +134,6 @@ public class PedidoDAO {
 
         return pedidos;
     }
+
 
 }

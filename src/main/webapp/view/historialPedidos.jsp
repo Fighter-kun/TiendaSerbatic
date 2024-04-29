@@ -58,6 +58,20 @@
                     <!-- =====  BREADCRUMB END===== -->
                     <%@ include file="components/leftBanner.jsp" %>
                     <div class="col-sm-8 col-lg-9 mtb_20">
+						<ul class="nav text-right">
+						    <li>
+						        <form id="ascendenteForm" action="HistorialPedidosServlet" method="post">
+						            <input type="radio" name="orden" value="ascendente" id="ascendente">
+						            <label for="ascendente">Ascendente</label>
+						        </form>
+						    </li>
+						    <li>
+						        <form id="descendenteForm" action="HistorialPedidosServlet" method="post">
+						            <input type="radio" name="orden" value="descendente" id="descendente">
+						            <label for="descendente">Descendente</label>
+						        </form>
+						    </li>
+						</ul>
                         <form>
                             <div class="table-responsive">
                                 <table class="table table-bordered">
@@ -131,27 +145,50 @@
         <script src="webroot/js/jquery.magnific-popup.js"></script>
         <script src="webroot/js/custom.js"></script>
         <script>
-    function mostrarDetallePedido(idPedido) {
-    $.ajax({
-        url: 'HistorialPedidosServlet',
-        type: 'GET',
-        data: {
-            idPedido: idPedido
-        },
-        success: function(data) {
-            // Actualizar el contenido del modal con los detalles del pedido
-            $('#pedidoDetalleContenido').html(data);
-            // Mostrar el modal
-            $('#pedidoDetalleModal').modal('show');
-        },
-        error: function(xhr, status, error) {
-            console.error('Error al obtener los detalles del pedido:', error);
-        }
-    });
-}
-
-</script>
-
+		    function mostrarDetallePedido(idPedido) {
+		    $.ajax({
+		        url: 'HistorialPedidosServlet',
+		        type: 'GET',
+		        data: {
+		            idPedido: idPedido
+		        },
+		        success: function(data) {
+		            // Actualizar el contenido del modal con los detalles del pedido
+		            $('#pedidoDetalleContenido').html(data);
+		            // Mostrar el modal
+		            $('#pedidoDetalleModal').modal('show');
+		        },
+		        error: function(xhr, status, error) {
+		            console.error('Error al obtener los detalles del pedido:', error);
+		        }
+		    });
+		}
+		
+		</script>
+		<script>
+		    const radios = document.querySelectorAll('input[type="radio"]');
+		    radios.forEach(radio => {
+		        radio.addEventListener('change', function() {
+		            radios.forEach(otherRadio => {
+		                if (otherRadio !== this) {
+		                    otherRadio.checked = false;
+		                }
+		            });
+		            this.form.submit();
+		        });
+		    });
+		</script>
+		<script>
+		    window.onload = function() {
+		        var orden = "<%= request.getParameter("orden") %>";
+		        var radios = document.getElementsByName("orden");
+		        for (var i = 0; i < radios.length; i++) {
+		            if (radios[i].value === orden) {
+		                radios[i].checked = true;
+		                break;
+		            }
+		        }
+		    };
+		</script>
     </body>
-
 </html>

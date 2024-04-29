@@ -28,3 +28,17 @@
 20:19:14,656  INFO LoginServlet:37 - El usuario usuario2@example.com inició sesión.
 20:38:28,241  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
 20:39:15,933  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+20:43:25,373  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+20:46:32,522  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+20:49:05,281  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+20:59:47,341  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:03:32,253  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:06:11,027  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:09:00,622  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:11:05,087  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:13:35,577  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:15:47,721  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:17:32,017  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:20:33,304  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:21:50,579  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+21:24:05,564  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.

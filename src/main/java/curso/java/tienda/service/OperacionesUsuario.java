@@ -106,8 +106,8 @@ public class OperacionesUsuario {
 
     }
 
-    public static List<PedidoVO> listarPedidosUsuario(int id_usuario) {
-        return PedidoDAO.listarPedidosUsuario(id_usuario);
+    public static List<PedidoVO> listarPedidosUsuario(int id_usuario, String orden) {
+        return PedidoDAO.listarPedidosUsuario(id_usuario, orden);
     }
 
     public static List<DetallePedidoVO> listarLineasPedidoUsuario(int id_pedido) {
