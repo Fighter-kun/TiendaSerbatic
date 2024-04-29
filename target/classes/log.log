@@ -1,0 +1,4 @@
+16:30:19,760  INFO LoginServlet:39 - El usuario usuario@example.com inició sesión.
+16:31:37,521  INFO LoginServlet:39 - El usuario usuario2@example.com inició sesión.
+16:34:19,428  INFO LoginServlet:39 - El usuario usuario@example.com inició sesión.
+16:39:19,821  INFO LoginServlet:39 - El usuario juan@example.com inició sesión.

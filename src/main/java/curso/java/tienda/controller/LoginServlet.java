@@ -6,14 +6,17 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 import curso.java.tienda.model.DAO.UsuarioDAO;
 import curso.java.tienda.model.VO.UsuarioVO;
-import curso.java.tienda.service.OperacionesUsuario;
 
 
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	private static Logger log = Logger.getLogger(LoginServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +35,8 @@ public class LoginServlet extends HttpServlet {
 				HttpSession sessionLogin = request.getSession(true);
 				sessionLogin.setAttribute("usuario", user);
 
+				//PropertyConfigurator.configure("./log4j.properties");
+				log.info("El usuario "+ user.getEmail()+" inició sesión.");
 				request.getRequestDispatcher("").forward(request, response);
 
 				
