@@ -1,4 +1,4 @@
-package curso.java.tienda.controller;
+package curso.java.tienda.controller.login;
 
 import java.io.*;
 

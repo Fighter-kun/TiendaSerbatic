@@ -2,6 +2,8 @@ package curso.java.tienda.controller;
 
 import curso.java.tienda.model.DAO.ProductoDAO;
 import curso.java.tienda.model.VO.ProductoVO;
+import curso.java.tienda.service.OperacionesProducto;
+
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -36,7 +38,6 @@ public class EntradaServlet extends HttpServlet {
 		//Si todo ha ido bien creo el carrito
 		if(request.getSession().getAttribute("carrito") == null) {
 			request.getSession().setAttribute("carrito", new HashMap<ProductoVO, Integer>());
-			System.out.println("Carrito disponible");
 		}
 		
 		request.setAttribute("catalogo", ProductoDAO.findAll());
@@ -46,8 +47,11 @@ public class EntradaServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		if (request.getParameter("orden") != null) {
+			request.setAttribute("catalogo", OperacionesProducto.buscarPorFiltro(request.getParameter("orden")));
+		    
+		    request.getRequestDispatcher("view/index.jsp").forward(request, response);
+		}
 	}
 
 }

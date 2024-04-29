@@ -113,10 +113,25 @@
                                 <h2 class="main_title">Featured Products</h2>
                             </div>
                             <ul class="nav text-right">
-                                <li class="active"> <a href="#nArrivals" data-toggle="tab">New Arrivals</a> </li>
-                                <li><a href="#Bestsellers" data-toggle="tab">Bestsellers</a> </li>
-                                <li><a href="#Featured" data-toggle="tab">Featured</a> </li>
-                            </ul>
+							    <li>
+							        <form id="nuevosForm" action="" method="post">
+							            <input type="radio" name="orden" value="nuevos" id="nuevos">
+							            <label for="nuevos">Nuevos</label>
+							        </form>
+							    </li>
+							    <li>
+							        <form id="precioAscForm" action="" method="post">
+							            <input type="radio" name="orden" value="precio_asc" id="precio_asc">
+							            <label for="precio_asc">Precio Ascendente</label>
+							        </form>
+							    </li>
+							    <li>
+							        <form id="precioDescForm" action="" method="post">
+							            <input type="radio" name="orden" value="precio_desc" id="precio_desc">
+							            <label for="precio_desc">Precio Descendente</label>
+							        </form>
+							    </li>
+							</ul>
                             <div class="tab-content clearfix box">
                                 <div class="tab-pane active" id="nArrivals">
                                     <div class="nArrivals owl-carousel">
@@ -647,6 +662,31 @@
         <script src="webroot/js/jquery.magnific-popup.js"></script>
         <script src="webroot/js/jquery.firstVisitPopup.js"></script>
         <script src="webroot/js/custom.js"></script>
+        <script>
+		    const radios = document.querySelectorAll('input[type="radio"]');
+		    radios.forEach(radio => {
+		        radio.addEventListener('change', function() {
+		            radios.forEach(otherRadio => {
+		                if (otherRadio !== this) {
+		                    otherRadio.checked = false;
+		                }
+		            });
+		            this.form.submit();
+		        });
+		    });
+		</script>
+		<script>
+		    window.onload = function() {
+		        var orden = "<%= request.getParameter("orden") %>";
+		        var radios = document.getElementsByName("orden");
+		        for (var i = 0; i < radios.length; i++) {
+		            if (radios[i].value === orden) {
+		                radios[i].checked = true;
+		                break;
+		            }
+		        }
+		    };
+		</script>
     </body>
 
 </html>
