@@ -1,0 +1,11 @@
+curso\java\tienda\model\VO\ProductoVO.class
+curso\java\tienda\controller\DetalleProductoServlet.class
+curso\java\tienda\controller\RegistroServlet.class
+curso\java\tienda\JakartaRestConfiguration.class
+curso\java\tienda\controller\ContactoServlet.class
+curso\java\tienda\controller\AñadirProductoServlet.class
+curso\java\tienda\model\DAO\ProductoDAO.class
+curso\java\tienda\util\Conexion.class
+curso\java\tienda\controller\EntradaServlet.class
+curso\java\tienda\controller\CarritoServlet.class
+curso\java\tienda\resources\JakartaEE8Resource.class
