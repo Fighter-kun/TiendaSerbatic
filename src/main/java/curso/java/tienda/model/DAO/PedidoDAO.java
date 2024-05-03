@@ -135,5 +135,18 @@ public class PedidoDAO {
         return pedidos;
     }
 
+    public static void cancelarPedido(int id) {
+		Connection con = Conexion.getConexion();
+		try {
+			String sql = "UPDATE pedidos SET estado = 'PC' WHERE id = ?";
+			PreparedStatement stmt = con.prepareStatement(sql);
 
+			stmt.setInt(1, id);
+
+			stmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
