@@ -110,14 +110,15 @@ session = request.getSession();
 										<td class="text-center"><%=pedido.getTotal()%></td>
 										<td class="text-center"><a href="#"
 											onclick="mostrarDetallePedido(<%=pedido.getId()%>)">...</a></td>
+											<td class="text-center">
 										<%
-										if (!"E".equals(pedido.getEstado())) {
+										if ("PE".equals(pedido.getEstado())) {
 										%>
-										<td class="text-center"><a class="btn btn-danger"
-											href="CancelarPedidoServlet?id=<%=pedido.getId()%>"><i class="fa fa-times-circle"></i></a></td>
+										<a href="CancelarPedidoServlet?id=<%=pedido.getId()%>">X</a>
 										<%
-										}
+										} 
 										%>
+										</td>
 									</tr>
 									<%
 									}
