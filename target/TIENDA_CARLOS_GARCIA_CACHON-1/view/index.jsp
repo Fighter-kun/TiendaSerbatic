@@ -63,25 +63,25 @@
                                 <h2 class="main_title">Featured Products</h2>
                             </div>
                             <ul class="nav text-right">
-							    <li>
-							        <form id="nuevosForm" action="" method="post">
-							            <input type="radio" name="orden" value="nuevos" id="nuevos">
-							            <label for="nuevos">Nuevos</label>
-							        </form>
-							    </li>
-							    <li>
-							        <form id="precioAscForm" action="" method="post">
-							            <input type="radio" name="orden" value="precio_asc" id="precio_asc">
-							            <label for="precio_asc">Precio Ascendente</label>
-							        </form>
-							    </li>
-							    <li>
-							        <form id="precioDescForm" action="" method="post">
-							            <input type="radio" name="orden" value="precio_desc" id="precio_desc">
-							            <label for="precio_desc">Precio Descendente</label>
-							        </form>
-							    </li>
-							</ul>
+                                <li>
+                                    <form id="nuevosForm" action="" method="post">
+                                        <input type="radio" name="orden" value="nuevos" id="nuevos">
+                                        <label for="nuevos">Nuevos</label>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form id="precioAscForm" action="" method="post">
+                                        <input type="radio" name="orden" value="precio_asc" id="precio_asc">
+                                        <label for="precio_asc">Precio Ascendente</label>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form id="precioDescForm" action="" method="post">
+                                        <input type="radio" name="orden" value="precio_desc" id="precio_desc">
+                                        <label for="precio_desc">Precio Descendente</label>
+                                    </form>
+                                </li>
+                            </ul>
                             <div class="tab-content clearfix box">
                                 <div class="tab-pane active" id="nArrivals">
                                     <div class="nArrivals owl-carousel">
