@@ -6,21 +6,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ProductoDAO {
     public static List<ProductoVO> findAll() {
-        List<ProductoVO> lista = new ArrayList<>();
+    List<ProductoVO> lista = new ArrayList<>();
 
-        try {
-            Connection con = Conexion.getConexion();
-            PreparedStatement st = con.prepareStatement("SELECT * FROM productos");
+    try {
+        Connection con = Conexion.getConexion();
+        PreparedStatement st = con.prepareStatement("SELECT * FROM productos");
 
-            ResultSet rs = st.executeQuery();
+        ResultSet rs = st.executeQuery();
 
-            while (rs.next()) {
+        while (rs.next()) {
+            Timestamp fechaBaja = rs.getTimestamp("fecha_baja");
+
+            // Verificar si la fecha de baja no es null
+            if (fechaBaja == null) {
                 ProductoVO producto = new ProductoVO(
                     rs.getInt("id"),
                     rs.getInt("id_categoria"),
@@ -29,21 +34,23 @@ public class ProductoDAO {
                     rs.getDouble("precio"),
                     rs.getInt("stock"),
                     rs.getTimestamp("fecha_alta"),
-                    rs.getTimestamp("fecha_baja"),
+                    fechaBaja,
                     rs.getFloat("impuesto"),
                     rs.getBytes("imagen")
                 );
                 lista.add(producto);
             }
-
-            rs.close();
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
-        return lista;
+        rs.close();
+        st.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return lista;
+}
+
     
     public static List<ProductoVO> buscarPorFiltro(String orderBy) {
         List<ProductoVO> lista = new ArrayList<>();
