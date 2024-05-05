@@ -1,3 +1,4 @@
+<%@page import="java.util.Base64"%>
 <%@page import="curso.java.tienda.model.VO.ProductoVO"%>
 <%@page import="curso.java.tienda.model.VO.UsuarioVO"%>
 <%@page import="java.util.HashMap"%>
@@ -41,70 +42,19 @@
         <!-- =====  LODER  ===== -->
         <div class="loder"></div>
         <div class="wrapper">
-            <div id="subscribe-me" class="modal animated fade in" role="dialog" data-keyboard="true" tabindex="-1">
-                <div class="newsletter-popup"> <img class="offer" src="webroot/images/newsbg.jpg" alt="offer">
-                    <div class="newsletter-popup-static newsletter-popup-top">
-                        <div class="popup-text">
-                            <div class="popup-title">50% <span>off</span></div>
-                            <div class="popup-desc">
-                                <div>Sign up and get 50% off your next Order</div>
-                            </div>
-                        </div>
-                        <form onsubmit="return  validatpopupemail();" method="post">
-                            <div class="form-group required">
-                                <input type="email" name="email-popup" id="email-popup" placeholder="Enter Your Email" class="form-control input-lg" required />
-                                <button type="submit" class="btn btn-default btn-lg" id="email-popup-submit">Subscribe</button>
-                                <label class="checkme">
-                                    <input type="checkbox" value="" id="checkme" /> Dont show again</label>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <!-- =====  HEADER START  ===== -->
             <%@ include file="components/header.jsp" %>
             <!-- =====  HEADER END  ===== -->
             <!-- =====  BANNER STRAT  ===== -->
             <div class="banner">
                 <div class="main-banner owl-carousel">
-                    <div class="item"><a href="#"><img src="webroot/images/main_banner1.jpg" alt="Main Banner" class="img-responsive" /></a></div>
-                    <div class="item"><a href="#"><img src="webroot/images/main_banner2.jpg" alt="Main Banner" class="img-responsive" /></a></div>
+                    <div class="item"><a href="DetalleProductoServlet?id=1"><img src="webroot/images/main_banner1.jpg" alt="Main Banner" class="img-responsive" /></a></div>
                 </div>
             </div>
             <!-- =====  BANNER END  ===== -->
             <!-- =====  CONTAINER START  ===== -->
             <div class="container">
                 <!-- =====  SUB BANNER  STRAT ===== -->
-                <div class="row">
-                    <div class="col-sm-3 mt_20 cms-icon ">
-                        <div class="feature-i-left ptb_30 ">
-                            <div class="icon-right Shipping"></div>
-                            <h6>Free Shipping</h6>
-                            <p>Free dedlivery worldwide</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 mt_20 cms-icon ">
-                        <div class="feature-i-left ptb_30 ">
-                            <div class="icon-right Order"></div>
-                            <h6>Order Onlivne</h6>
-                            <p>Hours : 8am - 11pm</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 mt_20 cms-icon ">
-                        <div class="feature-i-left ptb_30 ">
-                            <div class="icon-right Save"></div>
-                            <h6>Shop And Save</h6>
-                            <p>For All Spices & Herbs</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 mt_20 cms-icon ">
-                        <div class="feature-i-left ptb_30 ">
-                            <div class="icon-right Safe"></div>
-                            <h6>Safe Shoping</h6>
-                            <p>Ensure genuine 100%</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="row ">
                     <div class="col-sm-12 mt_30">
                         <!-- =====  PRODUCT TAB  ===== -->
@@ -113,10 +63,25 @@
                                 <h2 class="main_title">Featured Products</h2>
                             </div>
                             <ul class="nav text-right">
-                                <li class="active"> <a href="#nArrivals" data-toggle="tab">New Arrivals</a> </li>
-                                <li><a href="#Bestsellers" data-toggle="tab">Bestsellers</a> </li>
-                                <li><a href="#Featured" data-toggle="tab">Featured</a> </li>
-                            </ul>
+							    <li>
+							        <form id="nuevosForm" action="" method="post">
+							            <input type="radio" name="orden" value="nuevos" id="nuevos">
+							            <label for="nuevos">Nuevos</label>
+							        </form>
+							    </li>
+							    <li>
+							        <form id="precioAscForm" action="" method="post">
+							            <input type="radio" name="orden" value="precio_asc" id="precio_asc">
+							            <label for="precio_asc">Precio Ascendente</label>
+							        </form>
+							    </li>
+							    <li>
+							        <form id="precioDescForm" action="" method="post">
+							            <input type="radio" name="orden" value="precio_desc" id="precio_desc">
+							            <label for="precio_desc">Precio Descendente</label>
+							        </form>
+							    </li>
+							</ul>
                             <div class="tab-content clearfix box">
                                 <div class="tab-pane active" id="nArrivals">
                                     <div class="nArrivals owl-carousel">
@@ -127,17 +92,14 @@
                                         <div class="product-grid">
                                             <div class="item">
                                                 <div class="product-thumb">
-                                                    <div class="image product-imageblock"> <a href="DetalleProductoServlet?id=<%=producto.getId()%>"> <img data-name="product_image" src="webroot/images/product/product1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product1-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
+                                                    <div class="image product-imageblock"> <a href="DetalleProductoServlet?id=<%=producto.getId()%>"><img src="data:image/jpeg;base64, <%= new String(Base64.getEncoder().encode(producto.getImagen())) %>" alt="Imagen del producto"/> <img src="data:image/jpeg;base64, <%= new String(Base64.getEncoder().encode(producto.getImagen())) %>" alt="Imagen del producto"/>  </a>
                                                         <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
                                                             <div><a href="AñadirProductoServlet?id=<%=producto.getId()%>"><span></span>Add to cart</a></div>
                                                         </div>
                                                     </div>
                                                     <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem"><%=producto.getNombre()%></a></h6>
+                                                        
+                                                        <h6 data-name="product_name" class="product-name"><%=producto.getNombre()%></h6>
                                                         <span class="price"><span class="amount"><span class="currencySymbol">$</span><%=producto.getPrecio()%></span>
                                                         </span>
                                                     </div>
@@ -149,487 +111,10 @@
                                         %>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="Bestsellers">
-                                    <div class="Bestsellers owl-carousel">
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product1-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product3.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product3-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product5.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="images/product/product5-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product6.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product6-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product8.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product8-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product10.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product10-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="Featured">
-                                    <div class="Featured owl-carousel">
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product2.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product2-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product4.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product4-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product6.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product6-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product8.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product8-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="images/product/product10.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="images/product/product10-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="product-grid">
-                                            <div class="item">
-                                                <div class="product-thumb  mb_30">
-                                                    <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product2.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product2-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                        <div class="button-group text-center">
-                                                            <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                            <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                            <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                            <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="caption product-detail text-center">
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                        <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                        <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                         <!-- =====  PRODUCT TAB  END ===== -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="cms_banner">
-                        <div class="col-xs-12 mt_60">
-                            <div id="subbanner4" class="sub-hover">
-                                <div class="sub-img"><a href="#"><img src="webroot/images/sub5.jpg" alt="Sub Banner5" class="img-responsive"></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 mtb_10">
-                        <!-- =====  PRODUCT TAB  ===== -->
-                        <div class="mt_60">
-                            <div class="heading-part mb_10 ">
-                                <h2 class="main_title">Deals of the Week</h2>
-                            </div>
-                            <div class="latest_pro box">
-                                <div class="latest owl-carousel">
-                                    <div class="product-grid">
-                                        <div class="item">
-                                            <div class="product-thumb">
-                                                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product2.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product2-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                    <div class="button-group text-center">
-                                                        <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                        <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                        <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                        <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="caption product-detail text-center">
-                                                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                    <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                    <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-grid">
-                                        <div class="item">
-                                            <div class="product-thumb">
-                                                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product4.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product4-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                    <div class="button-group text-center">
-                                                        <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                        <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                        <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                        <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="caption product-detail text-center">
-                                                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                    <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                    <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-grid">
-                                        <div class="item">
-                                            <div class="product-thumb">
-                                                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product6.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product6-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                    <div class="button-group text-center">
-                                                        <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                        <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                        <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                        <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="caption product-detail text-center">
-                                                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                    <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                    <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-grid">
-                                        <div class="item">
-                                            <div class="product-thumb">
-                                                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product8.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="images/product/product8-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                    <div class="button-group text-center">
-                                                        <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                        <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                        <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                        <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="caption product-detail text-center">
-                                                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                    <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                    <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-grid">
-                                        <div class="item">
-                                            <div class="product-thumb">
-                                                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product10.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product10-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                    <div class="button-group text-center">
-                                                        <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                        <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                        <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                        <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="caption product-detail text-center">
-                                                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                    <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                    <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-grid">
-                                        <div class="item">
-                                            <div class="product-thumb">
-                                                <div class="image product-imageblock"> <a href="product_detail_page.html"> <img data-name="product_image" src="webroot/images/product/product2.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> <img src="webroot/images/product/product2-1.jpg" alt="iPod Classic" title="iPod Classic" class="img-responsive"> </a>
-                                                    <div class="button-group text-center">
-                                                        <div class="wishlist"><a href="#"><span>wishlist</span></a></div>
-                                                        <div class="quickview"><a href="#"><span>Quick View</span></a></div>
-                                                        <div class="compare"><a href="#"><span>Compare</span></a></div>
-                                                        <div class="add-to-cart"><a href="#"><span>Add to cart</span></a></div>
-                                                    </div>
-                                                </div>
-                                                <div class="caption product-detail text-center">
-                                                    <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-1x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i><i class="fa fa-star fa-stack-x"></i></span> </div>
-                                                    <h6 data-name="product_name" class="product-name"><a href="#" title="Casual Shirt With Ruffle Hem">New LCDScreen and HD Vide..</a></h6>
-                                                    <span class="price"><span class="amount"><span class="currencySymbol">$</span>70.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 mtb_10">
-                        <!-- =====  Blog ===== -->
-                        <div id="Blog" class="mt_50">
-                            <div class="heading-part mb_10 ">
-                                <h2 class="main_title">Latest News</h2>
-                            </div>
-                            <div class="blog-contain box">
-                                <div class="blog owl-carousel ">
-                                    <div class="item">
-                                        <div class="box-holder">
-                                            <div class="thumb post-img"><a href="#"> <img src="webroot/images/blog/blog_img_01.jpg" alt="themini"> </a>
-                                                <div class="date-time text-center">
-                                                    <div class="day"> 11</div>
-                                                    <div class="month">Aug</div>
-                                                </div>
-                                                <div class="post-image-hover"> </div>
-                                                <div class="post-info">
-                                                    <h6 class="mb_10 text-uppercase"> <a href="single_blog.html">Fashions fade, style is eternal</a> </h6>
-                                                    <p>Aliquam egestas pellentesque est. Etiam a orci Nulla id enim feugiat ligula ullamcorper scelerisque. Morbi eu luctus nisl.</p>
-                                                    <div class="view-blog">
-                                                        <div class="write-comment pull-left"> <a href="single_blog.html"> 0 Comments</a> </div>
-                                                        <div class="read-more pull-right"> <a href="single_blog.html"> <i class="fa fa-link"></i> read more</a> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="box-holder">
-                                            <div class="thumb post-img"><a href="#"> <img src="webroot/images/blog/blog_img_02.jpg" alt="themini"> </a>
-                                                <div class="date-time text-center">
-                                                    <div class="day"> 11</div>
-                                                    <div class="month">Aug</div>
-                                                </div>
-                                                <div class="post-image-hover"> </div>
-                                                <div class="post-info">
-                                                    <h6 class="mb_10 text-uppercase"> <a href="single_blog.html">Fashions fade, style is eternal</a> </h6>
-                                                    <p>Aliquam egestas pellentesque est. Etiam a orci Nulla id enim feugiat ligula ullamcorper scelerisque. Morbi eu luctus nisl.</p>
-                                                    <div class="view-blog">
-                                                        <div class="write-comment pull-left"> <a href="single_blog.html"> 0 Comments</a> </div>
-                                                        <div class="read-more pull-right"> <a href="single_blog.html"> <i class="fa fa-link"></i> read more</a> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="box-holder">
-                                            <div class="thumb post-img"><a href="#"> <img src="webroot/images/blog/blog_img_03.jpg" alt="themini"> </a>
-                                                <div class="date-time text-center">
-                                                    <div class="day"> 11</div>
-                                                    <div class="month">Aug</div>
-                                                </div>
-                                                <div class="post-image-hover"> </div>
-                                                <div class="post-info">
-                                                    <h6 class="mb_10 text-uppercase"> <a href="single_blog.html">Fashions fade, style is eternal</a> </h6>
-                                                    <p>Aliquam egestas pellentesque est. Etiam a orci Nulla id enim feugiat ligula ullamcorper scelerisque. Morbi eu luctus nisl.</p>
-                                                    <div class="view-blog">
-                                                        <div class="write-comment pull-left"> <a href="single_blog.html"> 0 Comments</a> </div>
-                                                        <div class="read-more pull-right"> <a href="single_blog.html"> <i class="fa fa-link"></i> read more</a> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="box-holder">
-                                            <div class="thumb post-img"><a href="#"> <img src="images/blog/blog_img_04.jpg" alt="themini"> </a>
-                                                <div class="date-time text-center">
-                                                    <div class="day"> 11</div>
-                                                    <div class="month">Aug</div>
-                                                </div>
-                                                <div class="post-image-hover"> </div>
-                                                <div class="post-info">
-                                                    <h6 class="mb_10 text-uppercase"> <a href="single_blog.html">Fashions fade, style is eternal</a> </h6>
-                                                    <p>Aliquam egestas pellentesque est. Etiam a orci Nulla id enim feugiat ligula ullamcorper scelerisque. Morbi eu luctus nisl.</p>
-                                                    <div class="view-blog">
-                                                        <div class="write-comment pull-left"> <a href="single_blog.html"> 0 Comments</a> </div>
-                                                        <div class="read-more pull-right"> <a href="single_blog.html"> <i class="fa fa-link"></i> read more</a> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- =====  Blog end ===== -->
-                        </div>
                     </div>
                 </div>
                 <!-- =====  SUB BANNER END  ===== -->
@@ -647,6 +132,31 @@
         <script src="webroot/js/jquery.magnific-popup.js"></script>
         <script src="webroot/js/jquery.firstVisitPopup.js"></script>
         <script src="webroot/js/custom.js"></script>
+        <script>
+		    const radios = document.querySelectorAll('input[type="radio"]');
+		    radios.forEach(radio => {
+		        radio.addEventListener('change', function() {
+		            radios.forEach(otherRadio => {
+		                if (otherRadio !== this) {
+		                    otherRadio.checked = false;
+		                }
+		            });
+		            this.form.submit();
+		        });
+		    });
+		</script>
+		<script>
+		    window.onload = function() {
+		        var orden = "<%= request.getParameter("orden") %>";
+		        var radios = document.getElementsByName("orden");
+		        for (var i = 0; i < radios.length; i++) {
+		            if (radios[i].value === orden) {
+		                radios[i].checked = true;
+		                break;
+		            }
+		        }
+		    };
+		</script>
     </body>
 
 </html>

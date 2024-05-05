@@ -19,5 +19,5 @@ public class ProductoVO {
     private Timestamp fecha_alta;
     private Timestamp fecha_baja;
     private float impuesto;
-    private String imagen;
+    private byte[] imagen;
 }

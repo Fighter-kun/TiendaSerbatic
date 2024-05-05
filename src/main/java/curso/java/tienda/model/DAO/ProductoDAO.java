@@ -31,7 +31,7 @@ public class ProductoDAO {
                     rs.getTimestamp("fecha_alta"),
                     rs.getTimestamp("fecha_baja"),
                     rs.getFloat("impuesto"),
-                    rs.getString("imagen")
+                    rs.getBytes("imagen")
                 );
                 lista.add(producto);
             }
@@ -78,7 +78,7 @@ public class ProductoDAO {
                     rs.getTimestamp("fecha_alta"),
                     rs.getTimestamp("fecha_baja"),
                     rs.getFloat("impuesto"),
-                    rs.getString("imagen")
+                    rs.getBytes("imagen")
                 );
                 lista.add(producto);
             }
@@ -112,7 +112,7 @@ public class ProductoDAO {
 	            producto.setStock(rs.getInt("stock"));
 	            producto.setFecha_alta(rs.getTimestamp("fecha_alta"));
 	            producto.setImpuesto(rs.getFloat("impuesto"));
-	            producto.setImagen(rs.getString("imagen"));
+	            producto.setImagen(rs.getBytes("imagen"));
                 producto.setFecha_baja(rs.getTimestamp("fecha_baja"));
 
 	        }

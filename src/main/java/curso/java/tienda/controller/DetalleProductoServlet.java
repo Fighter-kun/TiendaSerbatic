@@ -3,6 +3,7 @@ package curso.java.tienda.controller;
 import curso.java.tienda.model.DAO.ProductoDAO;
 import curso.java.tienda.model.VO.ProductoVO;
 import java.io.IOException;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,10 @@ public class DetalleProductoServlet extends HttpServlet {
             request.setAttribute("id", productoSeleccionado.getId());
             request.setAttribute("stock", productoSeleccionado.getStock());
             request.setAttribute("descripcion", productoSeleccionado.getDescripcion());
+            
+            String imagenBase64 = Base64.getEncoder().encodeToString(productoSeleccionado.getImagen());
+
+            request.setAttribute("imagen", imagenBase64);
             
             request.getRequestDispatcher("view/detalleProducto.jsp").forward(request, response);
         }

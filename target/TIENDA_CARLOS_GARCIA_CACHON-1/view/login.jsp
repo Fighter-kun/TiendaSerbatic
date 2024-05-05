@@ -70,10 +70,6 @@
                                                     <div class="form-group">
                                                         <input type="password" name="clave" id="clave" tabindex="2" class="form-control" placeholder="Password">
                                                     </div>
-                                                    <div class="form-group text-center">
-                                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                                        <label for="remember"> Remember Me</label>
-                                                    </div>
                                                     <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-sm-6 col-sm-offset-3">
@@ -85,22 +81,13 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 col-sm-offset-3">
                                                                 <%
-                                                                    String errorMessage = (String) session.getAttribute("error");
+                                                                    String errorMessage = (String) request.getAttribute("error");
                                                                     if (errorMessage != null) {
                                                                 %>
                                                                 <p style="color: red;"><%=errorMessage%></p>
                                                                 <%
                                                                     }
                                                                 %>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="text-center">
-                                                                    <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
