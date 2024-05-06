@@ -1,6 +1,7 @@
 curso\java\tienda\model\VO\ProductoVO.class
 curso\java\tienda\controller\DetalleProductoServlet.class
 curso\java\tienda\controller\RegistroServlet.class
+curso\java\tienda\controller\ListadoProductosServlet.class
 curso\java\tienda\JakartaRestConfiguration.class
 curso\java\tienda\controller\ContactoServlet.class
 curso\java\tienda\controller\AñadirProductoServlet.class

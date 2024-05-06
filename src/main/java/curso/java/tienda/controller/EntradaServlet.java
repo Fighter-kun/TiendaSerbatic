@@ -42,7 +42,7 @@ public class EntradaServlet extends HttpServlet {
 			request.getSession().setAttribute("carrito", new HashMap<ProductoVO, Integer>());
 		}
 		
-		request.setAttribute("catalogo", ProductoDAO.findAll());
+		request.setAttribute("catalogo", OperacionesProducto.findAll());
 		
 		if (request.getParameter("idioma") == null) {
 			// Idioma 'es' por defecto

@@ -105,6 +105,7 @@
                     <ul id="menu" class="nav navbar-nav">
                         <li> <a href="AñadirProductoServlet">Inicio</a></li>
                         <li> <a href="ContactoServlet">Contactanos</a></li>
+                        <li> <a href="ListadoProductosServlet">Relojes</a></li>
                     </ul>
                 </div>
                 <!-- /.nav-collapse -->

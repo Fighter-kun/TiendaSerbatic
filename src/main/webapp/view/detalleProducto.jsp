@@ -49,7 +49,7 @@
                             <h1><%= request.getAttribute("nombre")%></h1>
                             <ul>
                                 <li><a href="AñadirProductoServlet">Home</a></li>
-                                <li><a href="category_page.html">Products</a></li>
+                                <li><a href="ListadoProductosServlet">Products</a></li>
                                 <li class="active"><%= request.getAttribute("nombre")%></li>
                             </ul>
                         </div>

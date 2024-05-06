@@ -10,4 +10,8 @@ public class OperacionesProducto {
 	public static List<ProductoVO> buscarPorFiltro(String orderBy) { 
 		return ProductoDAO.buscarPorFiltro(orderBy);
 	}
+        
+        public static List<ProductoVO> findAll() { 
+            return ProductoDAO.findAll();
+        }
 }
