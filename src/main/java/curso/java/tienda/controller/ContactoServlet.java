@@ -1,22 +1,14 @@
 package curso.java.tienda.controller;
 
+import curso.java.tienda.model.VO.UsuarioVO;
+import curso.java.tienda.service.EnviarCorreo;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/ContactoServlet")
 public class ContactoServlet extends HttpServlet {
@@ -24,58 +16,29 @@ public class ContactoServlet extends HttpServlet {
    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession(false);
+        UsuarioVO usuario = (UsuarioVO) session.getAttribute("usuario");
+        if (usuario != null) {
+            request.setAttribute("nombre", usuario.getNombre());
+            request.setAttribute("email", usuario.getEmail());
+            request.setAttribute("numero", usuario.getTelefono());
+        }
         request.getRequestDispatcher("view/contacto.jsp").forward(request, response);
     }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    // Obtener los parámetros del formulario
-    String nombre = request.getParameter("name");
-    String email = request.getParameter("email");
-    String numero = request.getParameter("number");
-    String asunto = request.getParameter("subject");
-    String mensajeTexto = request.getParameter("message");
 
-    String destinatario = "carlos.daw2@gmail.com"; // CORREO "EMPRESARIAL"
-
-    try {
-        // Propiedades de la conexión
-        Properties prop = new Properties();
-        // Configuración del servidor SMTP
-        prop.setProperty("mail.smtp.host", "smtp-mail.outlook.com");
-        prop.setProperty("mail.smtp.starttls.enable", "true");
-        prop.setProperty("mail.smtp.port", "587");
-        prop.setProperty("mail.smtp.user", "tienda-online-curso@outlook.com");
-        prop.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-
-        // Crear una sesión
-        Session sesion = Session.getDefaultInstance(prop);
-
-        // Crear un mensaje
-        MimeMessage mensaje = new MimeMessage(sesion);
-        mensaje.setFrom(new InternetAddress("tienda-online-curso@outlook.com"));
-        mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-        mensaje.setSubject(asunto);
-        mensaje.setText("Nombre: " + nombre + "\n" +
-                        "Email: " + email + "\n" +
-                        "Número: " + numero + "\n" +
-                        "Mensaje: " + mensajeTexto);
-
-        // Crear un objeto Transport para enviar el mensaje
-        Transport t = sesion.getTransport("smtp");
-        t.connect("tienda-online-curso@outlook.com", "CursoJava2024");
-        t.sendMessage(mensaje, mensaje.getAllRecipients());
-        t.close();
-
-        // Redirigir a una página de confirmación
-        request.getRequestDispatcher("view/contacto.jsp").forward(request, response);
-        System.out.println("MENSAJE ENVIADO");
-
-    } catch (AddressException ex) {
-        Logger.getLogger(ContactoServlet.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (MessagingException ex) {
-        Logger.getLogger(ContactoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if (EnviarCorreo.enviarCorreo(request.getParameter("name"), request.getParameter("email"), 
+                request.getParameter("number"), request.getParameter("message"), request.getParameter("subject"))) {
+                request.setAttribute("mensajeConfirmacion", "El correo electrónico se envió correctamente.");
+                request.getRequestDispatcher("view/contacto.jsp").forward(request, response);
+        } else {
+            request.setAttribute("mensajeConfirmacion", "Error al enviar el correo electrónico. Por favor, inténtalo de nuevo.");
+            request.getRequestDispatcher("view/contacto.jsp").forward(request, response);
+        }
+    
     }
-}
     
 }

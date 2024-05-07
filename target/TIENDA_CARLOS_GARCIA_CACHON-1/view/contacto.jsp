@@ -56,14 +56,19 @@
               <!-- Contact FORM -->
               <div id="contact_form">
                 <form method="post" action="ContactoServlet">
-                  <input class="full-with-form " type="text" name="name" placeholder="Nombre" data-required="true" required/>
-                  <input class="full-with-form  mt_30" type="email" name="email" placeholder="Correo" data-required="true" required/>
-                  <input class="full-with-form  mt_30" type="text" name="number" placeholder="Numero" maxlength="15" data-required="true" required/>
-                  <input class="full-with-form  mt_30" type="text" name="subject" placeholder="Asunto" data-required="true" required>
-                  <textarea class="full-with-form  mt_30" name="message" data-required="true" required></textarea>
-                  <button class="btn mt_30" type="submit">Send Message</button>
+                    <input class="full-with-form" type="text" name="name" placeholder="Nombre" data-required="true" required value="${nombre}" />
+                    <input class="full-with-form mt_30" type="email" name="email" placeholder="Correo" data-required="true" required value="${email}" />
+                    <input class="full-with-form mt_30" type="text" name="number" placeholder="Numero" maxlength="15" data-required="true" required value="${numero}" />
+                    <input class="full-with-form mt_30" type="text" name="subject" placeholder="Asunto" data-required="true" required>
+                    <textarea class="full-with-form mt_30" name="message" data-required="true" required></textarea>
+                    <button class="btn mt_30" type="submit">Enviar</button>
                 </form>
-                <div id="contact_results"></div>
+                  <div id="contact_results">
+                      <% String mensajeConfirmacion = (String) request.getAttribute("mensajeConfirmacion"); %>
+                        <% if (mensajeConfirmacion != null) { %>
+                            <p><%= mensajeConfirmacion %></p>
+                        <% } %>
+                  </div>
               </div>
               <!-- END Contact FORM -->
             </div>

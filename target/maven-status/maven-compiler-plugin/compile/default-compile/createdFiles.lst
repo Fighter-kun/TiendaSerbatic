@@ -10,3 +10,4 @@ curso\java\tienda\util\Conexion.class
 curso\java\tienda\controller\EntradaServlet.class
 curso\java\tienda\controller\CarritoServlet.class
 curso\java\tienda\resources\JakartaEE8Resource.class
+curso\java\tienda\service\EnviarCorreo.class
