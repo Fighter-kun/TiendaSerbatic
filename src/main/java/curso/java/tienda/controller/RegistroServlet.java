@@ -11,9 +11,11 @@ import javax.servlet.http.HttpSession;
 import curso.java.tienda.model.DAO.UsuarioDAO;
 import curso.java.tienda.model.VO.UsuarioVO;
 import curso.java.tienda.service.OperacionesUsuario;
+import org.apache.log4j.Logger;
 
 @WebServlet("/RegistroServlet")
 public class RegistroServlet extends HttpServlet {
+    private static final Logger log = Logger.getLogger(LoginServlet.class);
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String email = request.getParameter("email");
@@ -52,7 +54,8 @@ public class RegistroServlet extends HttpServlet {
 	    if (user != null) {
 	        HttpSession sessionLogin = request.getSession(true);
 	        sessionLogin.setAttribute("usuario", user);
-	        request.getRequestDispatcher("").forward(request, response);
+                log.info("El usuario "+ user.getEmail()+" se registro.");
+		response.sendRedirect(request.getContextPath());
 	    } else {
 	        // Si hay un error al añadir el usuario, mostrar un mensaje de error
 	        request.setAttribute("error", "Error al registrar el usuario");

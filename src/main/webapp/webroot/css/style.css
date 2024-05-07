@@ -132,7 +132,7 @@ hr {
     padding: 5px 15px;
 }
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
-    background-color: #fa4251;
+    background-color: #FFD958;
     color: #fff;
 }
 ul {
@@ -500,7 +500,7 @@ h6 {
     font-weight: 500;
 }
 .btn:hover, .btn:focus, .btn.focus {
-    background: #808080 none repeat scroll 0 0;
+    background: #FFD958 none repeat scroll 0 0;
     color: #fff;
     text-decoration: none;
 }
@@ -611,7 +611,7 @@ i.right {
 }
 .nav>li>a:hover, .nav>li>a:focus {
     background: transparent;
-    color: #fa4251;
+    color: #FFD958;
 }
 #product-tab .nav li {
     display: inline-block;
@@ -844,7 +844,7 @@ input:focus, textarea:focus {
     letter-spacing: 0.5px;
 }
 .newsletters button:hover, .newsletters button.btn-default:focus {
-    background: #fa4251;
+    background: #FFD958;
     color: #fff;
     transition: 0.5s;
     box-shadow: none;
@@ -988,7 +988,7 @@ label.checkme {
     text-transform: uppercase;
 }
 .header-top-left .contact>a {
-    color: #fa4251;
+    color: #FFD958;
     font-size: 16px;
     font-weight: 500;
 }
@@ -1089,7 +1089,7 @@ label.checkme {
 .mega-dropdown-menu>li ul>li>a:hover, .mega-dropdown-menu>li ul>li>a:focus {
     text-decoration: none;
     color: #fff;
-    background-color: #fb4250;
+    background-color: #FFD958;
 }
 .mega-dropdown-menu .dropdown-header {
     color: #fff;
@@ -1120,19 +1120,19 @@ label.checkme {
     text-transform: uppercase;
 }
 #menu>li>a:hover, #menu>li>a:focus {
-    background-color: #fa4251;
+    background-color: #FFD958;
     color: #fff;
 }
 #menu .mega-dropdown:hover>a, #menu .mega-dropdown>a:hover, #menu .mega-dropdown>a:focus, #menu .dropdown:hover>a {
-    background-color: #fa4251;
+    background-color: #FFD958;
     color: #fff;
 }
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
-    background-color: #fa4251;
+    background-color: #FFD958;
     color: #fff;
 }
 #menu>li>a::before {
-    background: #fa4251 none repeat scroll 0 0;
+    background: #FFD958 none repeat scroll 0 0;
     bottom: 0;
     content: "";
     display: block;
@@ -1196,7 +1196,7 @@ label.checkme {
     color: #424242;
 }
 .main-search .btn-lg:hover i {
-    color: #fa5460;
+    color: #FFD958;
 }
 .main-search .input-group-btn {
     display: block;
@@ -1276,7 +1276,7 @@ label.checkme {
     box-shadow: none;
 }
 #cart>.btn:hover {
-    background-position: -15px -152px;
+    background-position: -15px -102px;
 }
 #cart.open>.btn {
     box-shadow: none;
@@ -1284,7 +1284,6 @@ label.checkme {
 }
 #cart-dropdown {
     background: #fff none repeat scroll 0 0;
-    border: 1px solid #e5e5e5;
     min-width: 285px;
     position: absolute;
     right: 0;
@@ -1359,7 +1358,7 @@ label.checkme {
     width: 100%;
 }
 .category {
-    background: #fa4251 none repeat scroll 0 0;
+    background: #FFD958 none repeat scroll 0 0;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
@@ -1418,7 +1417,7 @@ label.checkme {
 }
 
 .feature-i-left:hover h6 {
-    color: #fa4251;
+    color: #FFD958;
 }
 .left-cms ul>li {
     border-top: 3px solid #e5e5e5;
@@ -1430,7 +1429,7 @@ label.checkme {
 }
 input#amount {
     border: 0;
-    color: #fa4251;
+    color: #FFD958;
     font-weight: 700;
     font-size: 16px;
     width: 140px;
@@ -1473,7 +1472,7 @@ input#amount {
     padding: 8px 17px;
 }
 .Tags.left-sidebar-widget li:hover {
-    background: #fa4251 none repeat scroll 0 0;
+    background: #FFD958 none repeat scroll 0 0;
 }
 #left-blog .blog-item {
     display: inline-block;
@@ -1568,7 +1567,7 @@ input#amount {
     transition: all 0.5s ease 0s;
 }
 .sub-hover:hover .bannertext>p {
-    color: #fa4251;
+    color: #FFD958;
 }
 
 /* ----------------------------------------------
@@ -1666,7 +1665,7 @@ input#amount {
 ----------------------------------------------- */
 .date-time {
     background: #fff none repeat scroll 0 0;
-    color: #fa4251;
+    color: #FFD958;
     float: right;
     font-size: 12px;
     left: 10px;
@@ -1713,7 +1712,7 @@ input#amount {
     letter-spacing: 1px;
 }
 #Blog .post-info h6 a:hover {    
-    color: #fa4251;
+    color: #FFD958;
 }
 #Blog .post-img:hover>a {
     opacity: 0.6;
@@ -1739,7 +1738,7 @@ input#amount {
     color: #808080;
 }
 .write-comment:hover a, .read-more:hover a{
-    color: #fa4251;
+    color: #FFD958;
 }
 
 .post-image-hover {
@@ -1770,7 +1769,7 @@ article, .author {
     margin-top: 0;
 }
 blockquote {
-    border-color: #fa4251;
+    border-color: #FFD958;
 }
 
 /* ----------------------------------------------
@@ -1973,7 +1972,7 @@ blockquote {
     width: 36px;
 }
 .pagination-nav ul li.active a {
-    background: #fa4251 none repeat scroll 0 0;
+    background: #FFD958 none repeat scroll 0 0;
     color: #fff;
 }
 .pagination-nav ul li {
@@ -1996,7 +1995,7 @@ blockquote {
     color: #b2b2b2;
 }
 .fa.fa-star.fa-stack-1x {
-    color: #fa4251;
+    color: #FFD958;
 }
 
 /* =====  left sidebar css  ===== */
@@ -2052,7 +2051,7 @@ blockquote {
     margin-top: 5px;
 }
 .client-designation {
-    color: #fa4251;
+    color: #FFD958;
 }
 /* ----------------------------------------------
 	3.2.9 Owl nav
@@ -2086,7 +2085,7 @@ blockquote {
     transition: 0.5s;
 }
 .owl-nav>div:hover {
-    border-color: #fa4251;
+    border-color: #FFD958;
 }
 .owl-item .client-avatar>img {
     border-radius: 50%;
@@ -2132,7 +2131,7 @@ blockquote {
 }
 .client .owl-dot.active>span {
     background: rgba(0, 0, 0, 0.0) none repeat scroll 0 0;
-    border: 2px solid #fa4251;
+    border: 2px solid #FFD958;
     border-radius: 50%;
     display: inline-block;
     height: 14px;
@@ -2313,7 +2312,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     color: #9E9E9E;
 }
 .footer-block a:hover {
-    color: #fa4251;
+    color: #FFD958;
 }
 .social-icon ul li a {
     border: 2px solid #afafaf;
@@ -2343,7 +2342,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     -o-transition: all 0.4s ease-in-out 0s;
 }
 .social_icon ul li a i.fa:hover {
-    color: #fa4251;
+    color: #FFD958;
 }
 .footer-bottom {
     background: #000;
@@ -2365,7 +2364,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
 ----------------------------------------------- */
 
 #scrollup::before {
-    background: #fa4251 none repeat scroll 0 0;
+    background: #FFD958 none repeat scroll 0 0;
     bottom: 20px;
     color: #fff;
     content: "\f106";

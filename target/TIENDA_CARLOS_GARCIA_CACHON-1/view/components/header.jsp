@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-4">
                     <div class="header-top-left">
-                        <div class="contact"><span class="hidden-xs hidden-sm hidden-md">DIAS A LA SEMANA DE 9:00 AM A 7:00 PM</span></div>
+                        <div class="contact"><span class="hidden-xs hidden-sm hidden-md"><fmt:message key="scheduleContact" /></span></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-8">
@@ -30,11 +30,11 @@
                                 UsuarioVO u = (UsuarioVO) session.getAttribute("usuario");%>
                         <li class="dropdown"> <span class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button"><a href="PerfilServlet"><%=u.getEmail()%></a> <span class="caret"></span> </span>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="PerfilServlet">Profile</a></li>
-                                <li><a href="HistorialPedidosServlet">Orders history</a></li>
+                                <li><a href="PerfilServlet"><fmt:message key="perfil" /></a></li>
+                                <li><a href="HistorialPedidosServlet"><fmt:message key="historialPedidos" /></a></li>
                             </ul>
                         </li>
-                        <span aria-haspopup="true" aria-expanded="false" role="button"><a href="LogoutServlet">Logout</a> </span> 
+                        <span aria-haspopup="true" aria-expanded="false" role="button"><a href="LogoutServlet"><fmt:message key="logout" /></a> </span> 
                         <%
                                     } else { %> 
                         <li class="account"><a href="LoginServlet"><fmt:message key="account" /></a></li>
@@ -55,9 +55,13 @@
 
                 <div class="col-xs-6 col-sm-4 shopcart">
                     <div id="cart" class="btn-group btn-block mtb_40">
-                        <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true"><span id="shippingcart">Carrito</span><span id="cart-total">
+                        <button type="button" class="btn" data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true">
+                            <span id="shippingcart"><fmt:message key="carrito" /></span>
+                            <span id="cart-total">
                                 <% HashMap<ProductoVO, Integer> carrito = (HashMap<ProductoVO, Integer>) session.getAttribute("carrito");
-                                %> ( <%=carrito.size() > 0 ? carrito.size() : "0"%> )</span> </button>
+                                %> ( <%=carrito.size() > 0 ? carrito.size() : "0"%> )
+                            </span> 
+                        </button>
                     </div>
                     <div id="cart-dropdown" class="cart-menu collapse">
                         <ul>
@@ -103,9 +107,9 @@
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span class="i-bar"><i class="fa fa-bars"></i></span></button>
                 <div class="collapse navbar-collapse js-navbar-collapse">
                     <ul id="menu" class="nav navbar-nav">
-                        <li> <a href="AñadirProductoServlet">Inicio</a></li>
-                        <li> <a href="ContactoServlet">Contactanos</a></li>
-                        <li> <a href="ListadoProductosServlet">Relojes</a></li>
+                        <li> <a href="AñadirProductoServlet"><fmt:message key="casa" /></a></li>
+                        <li> <a href="ContactoServlet"><fmt:message key="contacto" /></a></li>
+                        <li> <a href="ListadoProductosServlet"><fmt:message key="relojes" /></a></li>
                     </ul>
                 </div>
                 <!-- /.nav-collapse -->

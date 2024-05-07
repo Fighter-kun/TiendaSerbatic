@@ -15,7 +15,7 @@ import curso.java.tienda.model.VO.UsuarioVO;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
-	private static Logger log = Logger.getLogger(LoginServlet.class);
+	private static final Logger log = Logger.getLogger(LoginServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 							
 			} else {
 				request.setAttribute("error", "Error de credenciales.");
-                request.getRequestDispatcher("view/login.jsp").forward(request, response);
+                                request.getRequestDispatcher("view/login.jsp").forward(request, response);
 			}
 		
 

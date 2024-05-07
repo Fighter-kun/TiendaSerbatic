@@ -86,7 +86,7 @@
                                         <input name="ud" id="ud" min="1" value="1" max="<%= request.getAttribute("stock")%>" type="number">
                                     </div>
                                     <div class="button-group mt_30">
-                                        <div><button type="submit" class="add-to-cart" ><span>Add to cart</span></button></div>
+                                        <div><button type="submit" class="add-to-cart" ></button></div>
                                     </div>
                                     </form>
                                 </div>

@@ -112,6 +112,7 @@
                                             <h6 data-name="product_name" class="product-name mt_20"><%= producto.getNombre()%></h6>
                                             <span class="price"><span class="amount"><span class="currencySymbol">$</span><%= producto.getPrecio()%></span></span>
                                             <p class="product-desc mt_20 mb_60"><%= producto.getDescripcion()%></p>
+                                                <div><a href="AñadirProductoServlet?id=<%=producto.getId()%>"><span></span>Add to cart</a></div>
                                         </div>
                                     </div>
                                 </div>

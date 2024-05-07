@@ -44,10 +44,11 @@ public class EntradaServlet extends HttpServlet {
 		
 		request.setAttribute("catalogo", OperacionesProducto.findAll());
 		
-		if (request.getParameter("idioma") == null) {
-			// Idioma 'es' por defecto
-			request.getSession().setAttribute("locale", new Locale("es"));     
-		}
+		Locale localePorDefecto = (Locale) request.getSession().getAttribute("locale");
+if (localePorDefecto == null) {
+    // Establecer el idioma 'es' por defecto si no está presente
+    request.getSession().setAttribute("locale", new Locale("es"));
+}
 		
 		request.getRequestDispatcher("view/index.jsp").forward(request, response);
 	}
@@ -56,9 +57,11 @@ public class EntradaServlet extends HttpServlet {
 		if (request.getParameter("orden") != null) {
 			request.setAttribute("catalogo", OperacionesProducto.buscarPorFiltro(request.getParameter("orden")));
 		    
-			if (request.getParameter("idioma") == null) {
-				request.getSession().setAttribute("locale", new Locale("es"));
-			}
+			Locale localePorDefecto = (Locale) request.getSession().getAttribute("locale");
+if (localePorDefecto == null) {
+    // Establecer el idioma 'es' por defecto si no está presente
+    request.getSession().setAttribute("locale", new Locale("es"));
+}
 	        
 		    request.getRequestDispatcher("view/index.jsp").forward(request, response);
 		}
