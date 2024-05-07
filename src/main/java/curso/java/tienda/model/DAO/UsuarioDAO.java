@@ -12,41 +12,48 @@ import curso.java.tienda.util.Conexion;
 public class UsuarioDAO {
 
 	public static UsuarioVO verificarCredenciales(String email, String contrasena) {
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		UsuarioVO usuario = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+    UsuarioVO usuario = null;
 
-		try {
-			Connection con = Conexion.getConexion();
-			String query = "SELECT * FROM usuarios WHERE email = ?";
-			statement = con.prepareStatement(query);
-			statement.setString(1, email);
-			resultSet = statement.executeQuery();
+    try {
+        Connection con = Conexion.getConexion();
+        String query = "SELECT * FROM usuarios WHERE email = ?";
+        statement = con.prepareStatement(query);
+        statement.setString(1, email);
+        resultSet = statement.executeQuery();
 
-			if (resultSet.next()) {
-				if (OperacionesUsuario.compararClaves(contrasena, resultSet.getString("clave"))) {
-					usuario = new UsuarioVO();
-					usuario.setId(resultSet.getInt("id"));
-					usuario.setId_rol(resultSet.getInt("id_rol"));
-					usuario.setEmail(resultSet.getString("email"));
-					usuario.setClave(resultSet.getString("clave"));
-					usuario.setNombre(resultSet.getString("nombre"));
-					usuario.setApellido1(resultSet.getString("apellido1"));
-					usuario.setApellido2(resultSet.getString("apellido2"));
-					usuario.setDireccion(resultSet.getString("direccion"));
-					usuario.setProvincia(resultSet.getString("provincia"));
-					usuario.setLocalidad(resultSet.getString("localidad"));
-					usuario.setTelefono(resultSet.getString("telefono"));
-					usuario.setDni(resultSet.getString("dni"));
-				}
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+        if (resultSet.next()) {
+            if (OperacionesUsuario.compararClaves(contrasena, resultSet.getString("clave"))) {
+                int idRol = resultSet.getInt("id_rol");
+                // Verificar si el id_rol es igual a 1
+                if (idRol == 1) {
+                    usuario = new UsuarioVO();
+                    usuario.setId(resultSet.getInt("id"));
+                    usuario.setId_rol(idRol);
+                    usuario.setEmail(resultSet.getString("email"));
+                    usuario.setClave(resultSet.getString("clave"));
+                    usuario.setNombre(resultSet.getString("nombre"));
+                    usuario.setApellido1(resultSet.getString("apellido1"));
+                    usuario.setApellido2(resultSet.getString("apellido2"));
+                    usuario.setDireccion(resultSet.getString("direccion"));
+                    usuario.setProvincia(resultSet.getString("provincia"));
+                    usuario.setLocalidad(resultSet.getString("localidad"));
+                    usuario.setTelefono(resultSet.getString("telefono"));
+                    usuario.setDni(resultSet.getString("dni"));
+                } else {
+                    // Si el id_rol no es igual a 1, devolver null
+                    usuario = null;
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 
-		return usuario;
-	}
+    return usuario;
+}
+
 
 	public static UsuarioVO añadirUsuario(String email, String clave) {
 		UsuarioVO nuevoUsuario = null;

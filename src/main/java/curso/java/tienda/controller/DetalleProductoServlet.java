@@ -28,19 +28,26 @@ public class DetalleProductoServlet extends HttpServlet {
             
             ProductoVO productoSeleccionado = ProductoDAO.findById(Integer.parseInt(id));
             
-            request.setAttribute("imagen", productoSeleccionado.getImagen());
-            request.setAttribute("nombre", productoSeleccionado.getNombre());
-            request.setAttribute("precio", productoSeleccionado.getPrecio());
-            request.setAttribute("categoria", productoSeleccionado.getId_categoria());
-            request.setAttribute("id", productoSeleccionado.getId());
-            request.setAttribute("stock", productoSeleccionado.getStock());
-            request.setAttribute("descripcion", productoSeleccionado.getDescripcion());
-            
-            String imagenBase64 = Base64.getEncoder().encodeToString(productoSeleccionado.getImagen());
+            if (productoSeleccionado != null) {
+                request.setAttribute("imagen", productoSeleccionado.getImagen());
+                request.setAttribute("nombre", productoSeleccionado.getNombre());
+                request.setAttribute("precio", productoSeleccionado.getPrecio());
+                request.setAttribute("categoria", productoSeleccionado.getId_categoria());
+                request.setAttribute("id", productoSeleccionado.getId());
+                request.setAttribute("stock", productoSeleccionado.getStock());
+                request.setAttribute("descripcion", productoSeleccionado.getDescripcion());
 
-            request.setAttribute("imagen", imagenBase64);
+                String imagenBase64 = Base64.getEncoder().encodeToString(productoSeleccionado.getImagen());
+
+                request.setAttribute("imagen", imagenBase64);
+
+                request.getRequestDispatcher("view/detalleProducto.jsp").forward(request, response);
+            } else {
+                response.sendRedirect(request.getContextPath());
+            }
             
-            request.getRequestDispatcher("view/detalleProducto.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(request.getContextPath());
         }
         
     }

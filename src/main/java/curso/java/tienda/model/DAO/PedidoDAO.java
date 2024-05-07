@@ -35,29 +35,7 @@ public class PedidoDAO {
             e.printStackTrace();
         }
     }
-    
-    public static String asignarNumFactura(int idUsuario) {
-
-        int numFactura = 0;
         
-        try {
-            Connection con = Conexion.getConexion();
-            PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM pedidos");
-            
-            ResultSet rs = st.executeQuery();
-
-            while (rs.next()) {
-                numFactura = rs.getInt(1);
-            }
-            
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return "FA" + (numFactura + 1) + "-US" + idUsuario;
-    }
-    
     /**
     * Busca y devuelve el último pedido realizado por un usuario identificado por su ID.
     *
