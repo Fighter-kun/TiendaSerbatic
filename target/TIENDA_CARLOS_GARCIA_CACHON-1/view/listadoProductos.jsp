@@ -77,28 +77,25 @@
                                 </div>
                                 <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                             </div>
-                            <div class="sort-wrapper pull-right">
-                                <label class="control-label" for="input-sort">Sort By :</label>
-                                <div class="sort-inner">
-                                    <select id="input-sort" class="form-control">
-                                        <option value="ASC" selected="selected">Default</option>
-                                        <option value="ASC">Name (A - Z)</option>
-                                        <option value="DESC">Name (Z - A)</option>
-                                        <option value="ASC">Price (Low &gt; High)</option>
-                                        <option value="DESC">Price (High &gt; Low)</option>
-                                        <option value="DESC">Rating (Highest)</option>
-                                        <option value="ASC">Rating (Lowest)</option>
-                                        <option value="ASC">Model (A - Z)</option>
-                                        <option value="DESC">Model (Z - A)</option>
-                                    </select>
-                                </div>
-                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                            </div>
                             -->
+                            <div class="sort-wrapper pull-right">
+                                <form id="sort-form" action="ListadoProductosServlet" method="post">
+                                    <label class="control-label" for="input-sort">Sort By :</label>
+                                    <div class="sort-inner">
+                                        <select id="input-sort" class="form-control" name="orden">
+                                            <option value="fecha_alta" selected="selected">Default</option>
+                                            <option value="fecha_alta">Nuevo</option>
+                                            <option value="precio_asc">Precio (Low &gt; High)</option>
+                                            <option value="precio_desc">Precio (High &gt; Low)</option>
+                                        </select>
+                                    </div>
+                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </form>
+                            </div>
                         </div>
                         <div class="row">
                             <% List<ProductoVO> catalogo = (List<ProductoVO>) request.getAttribute("catalogo");
-                for (ProductoVO producto : catalogo) {%>
+                            for (ProductoVO producto : catalogo) {%>
 
                             <div class="product-layout product-grid col-md-4 col-xs-6 ">
                                 <div class="item">
@@ -148,6 +145,16 @@
         <script src="webroot/js/jquery.magnific-popup.js"></script>
         <script src="webroot/js/custom.js"></script>
         <script src="webroot/js/jquery-ui.js"></script>
+        <script>
+            // Obtener el elemento select
+            var selectElement = document.getElementById("input-sort");
+
+            // Agregar un event listener para escuchar el cambio de selección
+            selectElement.addEventListener("change", function() {
+                // Enviar el formulario cuando cambia la selección
+                document.getElementById("sort-form").submit();
+            });
+        </script>
         <script>
             $(function () {
                 $("#slider-range").slider({

@@ -62,8 +62,8 @@
                             <ul class="nav text-right">
                                 <li>
                                     <form id="nuevosForm" action="" method="post">
-                                        <input type="radio" name="orden" value="nuevos" id="nuevos">
-                                        <label for="nuevos">Nuevos</label>
+                                        <input type="radio" name="orden" value="fecha_alta" id="fecha_alta">
+                                        <label for="fecha_alta">Nuevos</label>
                                     </form>
                                 </li>
                                 <li>

@@ -20,7 +20,8 @@ public class ListadoProductosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setAttribute("catalogo", OperacionesProducto.buscarPorFiltro(request.getParameter("orden")));
+        request.getRequestDispatcher("view/listadoProductos.jsp").forward(request, response);
         
     }
 
