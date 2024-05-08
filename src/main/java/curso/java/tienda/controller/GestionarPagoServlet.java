@@ -87,14 +87,13 @@ public class GestionarPagoServlet extends HttpServlet {
 					}
 				}
 				
-				total += ((producto.getPrecio()*producto.getImpuesto())+producto.getPrecio())*cantidad;
 			}
 		
 		
 			
 			
 			
-			PedidoVO pedido = new PedidoVO(usuarioCompleto.getId(), request.getParameter("metodoPago"), null, total);
+			PedidoVO pedido = new PedidoVO(usuarioCompleto.getId(), request.getParameter("metodoPago"), "PE", null, 0);
 			PedidoDAO.realizarPedido(pedido);
 			PedidoVO pedidoInsertado = PedidoDAO.buscarUltimoPedidoPorUsuario(usuarioCompleto.getId());
 

@@ -18,10 +18,11 @@ public class PedidoVO {
     private double total;
     
     
-	public PedidoVO(int idUsuario, String metodoPago, String numFactura, double total) {
+	public PedidoVO(int idUsuario, String metodoPago, String estado, String numFactura, double total) {
 		super();
 		this.idUsuario = idUsuario;
 		this.metodoPago = metodoPago;
+		this.estado = estado;
 		this.numFactura = numFactura;
 		this.total = total;
 	}

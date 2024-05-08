@@ -12,29 +12,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PedidoDAO {
-    public static void realizarPedido(PedidoVO pedido) {
-        try {
-            Connection con = Conexion.getConexion();
-            String query = "INSERT INTO pedidos (id_usuario, metodo_pago, num_factura, total) " +
-                           "VALUES (?, ?, ?, ?)";
-            PreparedStatement st = con.prepareStatement(query);
-            st.setInt(1, pedido.getIdUsuario());
-            st.setString(2, pedido.getMetodoPago());
-            st.setString(3, pedido.getNumFactura());
-            st.setDouble(4, pedido.getTotal());
+	public static void realizarPedido(PedidoVO pedido) {
+	    try {
+	        Connection con = Conexion.getConexion();
+	        String query = "INSERT INTO pedidos (id_usuario, metodo_pago, estado, num_factura, total) " +
+	                       "VALUES (?, ?, ?, ?, ?)";
+	        PreparedStatement st = con.prepareStatement(query);
+	        st.setInt(1, pedido.getIdUsuario());
+	        st.setString(2, pedido.getMetodoPago());
+	        st.setString(3, pedido.getEstado());
+	        st.setString(4, pedido.getNumFactura());
+	        st.setDouble(5, pedido.getTotal());
 
-            int filasInsertadas = st.executeUpdate();
-            if (filasInsertadas > 0) {
-                System.out.println("Pedido realizado correctamente.");
-            } else {
-                System.out.println("Error al realizar el pedido.");
-            }
+	        int filasInsertadas = st.executeUpdate();
+	        if (filasInsertadas > 0) {
+	            System.out.println("Pedido realizado correctamente.");
+	        } else {
+	            System.out.println("Error al realizar el pedido.");
+	        }
 
-            st.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+	        st.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
         
     /**
     * Busca y devuelve el último pedido realizado por un usuario identificado por su ID.
@@ -127,4 +129,25 @@ public class PedidoDAO {
 			e.printStackTrace();
 		}
 	}
+
+    public static String obtenerEstadoPedido(int idPedido) {
+        String estado = null;
+        
+        try {
+        	Connection conn = Conexion.getConexion();
+            PreparedStatement stmt = conn.prepareStatement("SELECT estado FROM pedidos WHERE id = ?");
+            stmt.setInt(1, idPedido);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    estado = rs.getString("estado");
+                }
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return estado;
+    }
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import curso.java.tienda.model.VO.PedidoVO;
 import curso.java.tienda.model.VO.UsuarioVO;
+import curso.java.tienda.service.OperacionesPedidos;
 import curso.java.tienda.service.OperacionesProducto;
 import curso.java.tienda.service.OperacionesUsuario;
 import java.io.PrintWriter;
@@ -78,6 +79,9 @@ public class HistorialPedidosServlet extends HttpServlet {
                 out.println("<td class='text-center'>" + detalle.getPrecioUnidad() + "</td>");
                 out.println("<td class='text-center'>" + (detalle.getImpuesto()*100) + " %</td>");
                 out.println("<td class='text-center'>" + detalle.getTotal() + "</td>");
+                if (OperacionesPedidos.obtenerEstadoPedido(Integer.parseInt(request.getParameter("idPedido"))).equals("PE")) {
+                	out.println("<td class='text-center'><a href='CancelarLineaPedidoServlet?id=" + detalle.getId() + "'>X</a></td>");
+                }
                 out.println("</tr>");
             }
 

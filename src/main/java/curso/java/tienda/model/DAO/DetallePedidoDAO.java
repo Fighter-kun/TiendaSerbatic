@@ -36,7 +36,7 @@ public class DetallePedidoDAO {
 		}
 	}
         
-        public static List<DetallePedidoVO> listarLineasPedidosUsuario(int id_pedido) { 
+    public static List<DetallePedidoVO> listarLineasPedidosUsuario(int id_pedido) { 
             List<DetallePedidoVO> lineas = new ArrayList<>();
             Connection conn = null;
             PreparedStatement stmt = null;
@@ -68,4 +68,17 @@ public class DetallePedidoDAO {
 
         return lineas;
     }
+    
+    public static void eliminarLineaPedido(int ipLineaPedido) {
+    	try {
+    		Connection conn = Conexion.getConexion();
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM detalles_pedido WHERE id = ?");
+               stmt.setInt(1, ipLineaPedido);
+               
+               stmt.executeUpdate();
+           } catch (SQLException e) {
+               e.printStackTrace();
+           }
+       }
+
 }
