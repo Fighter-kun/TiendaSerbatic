@@ -37,5 +37,19 @@ public class SeleccionIdioma extends HttpServlet {
         
         request.getRequestDispatcher("").forward(request, response);
     }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+        String idioma = request.getParameter("idioma");
+
+        if ("es".equals(idioma)) {
+			request.getSession().setAttribute("locale", new Locale("es"));
+		} else if ("en".equals(idioma)) {
+			request.getSession().setAttribute("locale", new Locale("en"));
+		} else {
+			request.getSession().setAttribute("locale", request.getLocale());
+		}        
+        
+        request.getRequestDispatcher("").forward(request, response);
+    }
 
 }

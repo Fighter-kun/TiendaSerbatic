@@ -9,6 +9,7 @@ D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\LogoutServlet.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\service\OperacionesUsuario.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\AñadirProductoServlet.java
+D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\service\EnviarCorreo.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\model\DAO\ProductoDAO.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\EliminarProductoServlet.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\EntradaServlet.java
@@ -28,4 +29,6 @@ D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\ContactoServlet.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\ActualizarCantidadServlet.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\model\DAO\DetallePedidoDAO.java
+D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\service\GenerarFactura.java
+D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\controller\CancelarLineaPedidoServlet.java
 D:\DAW2\TiendaSerbatic\RamaEnSerbatic\TIENDA_CARLOS_GARCIA_CACHON\src\main\java\curso\java\tienda\service\OperacionesProducto.java
