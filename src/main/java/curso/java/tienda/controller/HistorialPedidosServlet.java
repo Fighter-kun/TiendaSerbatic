@@ -74,8 +74,8 @@ public class HistorialPedidosServlet extends HttpServlet {
                 out.println("<tr>");
                 out.println("<td class='text-center'>" + detalle.getIdPedido() + "</td>");
                 out.println("<td class='text-center'>" + detalle.getIdProducto() + "</td>");
-                out.println("<td class='text-center'>" + detalle.getPrecioUnidad() + "</td>");
                 out.println("<td class='text-center'>" + detalle.getUnidades() + "</td>");
+                out.println("<td class='text-center'>" + detalle.getPrecioUnidad() + "</td>");
                 out.println("<td class='text-center'>" + (detalle.getImpuesto()*100) + " %</td>");
                 out.println("<td class='text-center'>" + detalle.getTotal() + "</td>");
                 out.println("</tr>");

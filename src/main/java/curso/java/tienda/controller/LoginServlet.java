@@ -31,15 +31,20 @@ public class LoginServlet extends HttpServlet {
 			UsuarioVO user = UsuarioDAO.verificarCredenciales(request.getParameter("email"), request.getParameter("clave"));
 
 			if (user != null) {
-				HttpSession sessionLogin = request.getSession(true);
-				sessionLogin.setAttribute("usuario", user);
+				if (user.getFecha_baja() == null) {
+					HttpSession sessionLogin = request.getSession(true);
+					sessionLogin.setAttribute("usuario", user);
 
-				log.info("El usuario "+ user.getEmail()+" inició sesión.");
-				response.sendRedirect(request.getContextPath());
+					log.info("El usuario "+ user.getEmail()+" inició sesión.");
+					response.sendRedirect(request.getContextPath());
+				} else {
+					request.setAttribute("error", "ERROR: Contacte con el administrador.");
+	                request.getRequestDispatcher("view/login.jsp").forward(request, response);
+				}
 							
 			} else {
 				request.setAttribute("error", "Error de credenciales.");
-                                request.getRequestDispatcher("view/login.jsp").forward(request, response);
+                request.getRequestDispatcher("view/login.jsp").forward(request, response);
 			}
 		
 

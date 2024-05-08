@@ -1,5 +1,7 @@
 package curso.java.tienda.model.VO;
 
+import java.util.Date;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +21,7 @@ public class UsuarioVO {
 	private String localidad;
 	private String telefono;
 	private String dni;
+	private Date fecha_baja;
 	
 	public UsuarioVO(int id, int id_rol, String email, String nombre, String apellido1, String apellido2,
 			String direccion, String provincia, String localidad, String telefono, String dni) {
@@ -34,6 +37,23 @@ public class UsuarioVO {
 		this.localidad = localidad;
 		this.telefono = telefono;
 		this.dni = dni;
+	}
+	
+	public UsuarioVO(int id, int id_rol, String email, String nombre, String apellido1, String apellido2,
+			String direccion, String provincia, String localidad, String telefono, String dni, Date fecha_baja) {
+		super();
+		this.id = id;
+		this.id_rol = id_rol;
+		this.email = email;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.direccion = direccion;
+		this.provincia = provincia;
+		this.localidad = localidad;
+		this.telefono = telefono;
+		this.dni = dni;
+		this.fecha_baja = fecha_baja;
 	}
 
 	public UsuarioVO(String email, String clave) {

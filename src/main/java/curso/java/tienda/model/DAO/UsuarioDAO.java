@@ -41,6 +41,7 @@ public class UsuarioDAO {
                     usuario.setLocalidad(resultSet.getString("localidad"));
                     usuario.setTelefono(resultSet.getString("telefono"));
                     usuario.setDni(resultSet.getString("dni"));
+                    usuario.setFecha_baja(resultSet.getDate("fecha_baja"));
                 } else {
                     // Si el id_rol no es igual a 1, devolver null
                     usuario = null;

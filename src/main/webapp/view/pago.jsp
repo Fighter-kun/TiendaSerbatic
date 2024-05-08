@@ -81,8 +81,8 @@
                                                     total = +producto.getPrecio();
                                         %>
                                         <tr>
-                                            <td class="text-center"><a href="#"><img src="webroot/images/product/70x84.jpg" alt="iPod Classic" title="iPod Classic"></a></td>
-                                            <td class="text-left"><a href="product.html"><%=producto.getNombre()%></a></td>
+                                            <td class="text-center"><a href="DetalleProductoServlet?id=<%=producto.getId()%>"> <img src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(producto.getImagen())%>" alt="<%= producto.getNombre()%>" style="max-width: 100px; max-height: 100px;"></a></td>
+                                            <td class="text-left"><%=producto.getNombre()%></td>
                                             <td class="text-left"><%=producto.getDescripcion()%></td>
                                             <td class="text-left">
                                                 <div style="max-width: 200px;" class="input-group btn-block">

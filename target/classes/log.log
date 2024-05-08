@@ -1,1 +1,8 @@
 
+09:37:50,005  INFO LoginServlet:57 - El usuario usuario2@example.com se registro.
+09:44:16,201  INFO LoginServlet:37 - El usuario usuario2@example.com inició sesión.
+09:46:42,954  INFO LoginServlet:37 - El usuario usuario2@example.com inició sesión.
+09:55:01,993  INFO LoginServlet:37 - El usuario usuario2@example.com inició sesión.
+10:01:07,762  INFO LoginServlet:37 - El usuario usuario@example.com inició sesión.
+10:11:56,690  INFO LoginServlet:38 - El usuario usuario@example.com inició sesión.
+10:14:15,988  INFO LoginServlet:38 - El usuario usuario@example.com inició sesión.
