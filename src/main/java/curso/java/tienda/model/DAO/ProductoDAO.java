@@ -98,6 +98,55 @@ public class ProductoDAO {
         return lista;
     }
 
+    public static List<ProductoVO> buscarPorFiltro(String orderBy, int idCategoria) {
+        List<ProductoVO> lista = new ArrayList<>();
+
+        try {
+            Connection con = Conexion.getConexion();
+            String query = "SELECT * FROM productos WHERE id_categoria = ?";
+
+            switch (orderBy) {
+                case "precio_asc":
+                    query += " ORDER BY precio ASC";
+                    break;
+                case "precio_desc":
+                    query += " ORDER BY precio DESC";
+                    break;
+                case "fecha_alta":
+                    query += " ORDER BY fecha_alta ASC";
+                    break;
+            }
+
+            PreparedStatement st = con.prepareStatement(query);
+            st.setInt(1, idCategoria);
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                ProductoVO producto = new ProductoVO(
+                        rs.getInt("id"),
+                        rs.getInt("id_categoria"),
+                        rs.getString("nombre"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precio"),
+                        rs.getInt("stock"),
+                        rs.getTimestamp("fecha_alta"),
+                        rs.getTimestamp("fecha_baja"),
+                        rs.getFloat("impuesto"),
+                        rs.getBytes("imagen")
+                );
+                lista.add(producto);
+            }
+
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
+
+    
     public static ProductoVO findById(int id) {
         ProductoVO producto = null;
 

@@ -83,7 +83,6 @@
                                     <label class="control-label" for="input-sort">Sort By :</label>
                                     <div class="sort-inner">
                                         <select id="input-sort" class="form-control" name="orden">
-                                            <option value="fecha_alta" selected="selected">Default</option>
                                             <option value="fecha_alta">Nuevo</option>
                                             <option value="precio_asc">Precio (Low &gt; High)</option>
                                             <option value="precio_desc">Precio (High &gt; Low)</option>
@@ -150,11 +149,35 @@
             var selectElement = document.getElementById("input-sort");
 
             // Agregar un event listener para escuchar el cambio de selección
-            selectElement.addEventListener("change", function() {
+            selectElement.addEventListener("change", function () {
                 // Enviar el formulario cuando cambia la selección
                 document.getElementById("sort-form").submit();
             });
         </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Obtener el elemento select
+                var selectElement = document.getElementById("input-sort");
+
+                // Obtener el valor almacenado en el almacenamiento local
+                var selectedValue = localStorage.getItem("selectedSortOption");
+
+                // Establecer el valor seleccionado en el elemento select
+                if (selectedValue) {
+                    selectElement.value = selectedValue;
+                }
+
+                // Escuchar el evento change del elemento select
+                selectElement.addEventListener("change", function () {
+                    // Guardar el valor seleccionado en el almacenamiento local
+                    localStorage.setItem("selectedSortOption", selectElement.value);
+
+                    // Enviar el formulario cuando se cambia la selección
+                    document.getElementById("sort-form").submit();
+                });
+            });
+        </script>
+
         <script>
             $(function () {
                 $("#slider-range").slider({
